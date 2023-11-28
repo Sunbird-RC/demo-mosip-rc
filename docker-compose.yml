@@ -143,5 +143,20 @@ services:
       interval: 30s
       timeout: 10s
       retries: 10
+  nginx:
+    image: mosip-nginx
+    build: .
+    ports:
+      - '80:80'
+    depends_on:
+      registry:
+        condition: service_healthy
+      identity:
+        condition: service_healthy
+      schema:
+        condition: service_healthy
+      credential:
+        condition: service_healthy
+
 volumes:
   vault-data:
