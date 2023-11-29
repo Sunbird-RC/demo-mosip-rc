@@ -761,13 +761,13 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{CREDSCHEMA_BASE_URL}}/credential-schema/did:schema:b22f7835-0255-412b-8663-d1131c48aa66/1.0.0",
+									"raw": "{{CREDSCHEMA_BASE_URL}}/credential-schema/did:schema:03a43e44-b674-4082-a8ec-7112a28c2489/1.0.0",
 									"host": [
 										"{{CREDSCHEMA_BASE_URL}}"
 									],
 									"path": [
 										"credential-schema",
-										"did:schema:b22f7835-0255-412b-8663-d1131c48aa66",
+										"did:schema:03a43e44-b674-4082-a8ec-7112a28c2489",
 										"1.0.0"
 									]
 								}
@@ -818,7 +818,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{CREDSCHEMA_BASE_URL}}/credential-schema?tags=tag1,tag2&page=1&limit=1",
+									"raw": "{{CREDSCHEMA_BASE_URL}}/credential-schema?tags=InsuranceCertificate&page=1&limit=10",
 									"host": [
 										"{{CREDSCHEMA_BASE_URL}}"
 									],
@@ -828,7 +828,7 @@
 									"query": [
 										{
 											"key": "tags",
-											"value": "tag1,tag2"
+											"value": "InsuranceCertificate"
 										},
 										{
 											"key": "page",
@@ -836,7 +836,7 @@
 										},
 										{
 											"key": "limit",
-											"value": "1"
+											"value": "10"
 										}
 									]
 								}
@@ -1674,7 +1674,63 @@
 					"response": []
 				},
 				{
-					"name": "3. Create Insurance Registry",
+					"name": "3. Get schema by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{CREDSCHEMA_BASE_URL}}/credential-schema/{{cred_schema_id}}",
+							"host": [
+								"{{CREDSCHEMA_BASE_URL}}"
+							],
+							"path": [
+								"credential-schema",
+								"{{cred_schema_id}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get schema by id and version",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{CREDSCHEMA_BASE_URL}}/credential-schema/did:schema:b22f7835-0255-412b-8663-d1131c48aa66/1.0.0",
+									"host": [
+										"{{CREDSCHEMA_BASE_URL}}"
+									],
+									"path": [
+										"credential-schema",
+										"did:schema:b22f7835-0255-412b-8663-d1131c48aa66",
+										"1.0.0"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Length",
+									"value": "3082"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 14 Jul 2023 07:17:01 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"schema\": {\n        \"type\": \"https://w3c-ccg.github.io/vc-json-schemas/\",\n        \"id\": \"did:schema:b22f7835-0255-412b-8663-d1131c48aa66\",\n        \"version\": \"1.0.0\",\n        \"name\": \"Proof of Academic Evaluation Credential\",\n        \"author\": \"did:rcw:6b9d7b31-bc7f-454a-be30-b6c7447b1cff\",\n        \"authored\": \"2022-12-19T09:22:23.064Z\",\n        \"schema\": {\n            \"$id\": \"Proof-of-Academic-Evaluation-Credential-1.0\",\n            \"type\": \"object\",\n            \"$schema\": \"https://json-schema.org/draft/2019-09/schema\",\n            \"required\": [\n                \"grade\",\n                \"programme\",\n                \"certifyingInstitute\",\n                \"evaluatingInstitute\"\n            ],\n            \"properties\": {\n                \"grade\": {\n                    \"type\": \"string\",\n                    \"description\": \"Grade (%age, GPA, etc.) secured by the holder.\"\n                },\n                \"programme\": {\n                    \"type\": \"string\",\n                    \"description\": \"Name of the programme pursed by the holder.\"\n                },\n                \"certifyingInstitute\": {\n                    \"type\": \"string\",\n                    \"description\": \"Name of the instute which certified the said grade in the said skill\"\n                },\n                \"evaluatingInstitute\": {\n                    \"type\": \"string\",\n                    \"description\": \"Name of the institute which ran the programme and evaluated the holder.\"\n                }\n            },\n            \"description\": \"The holder has secured the <PERCENTAGE/GRADE> in <PROGRAMME> from <ABC_Institute>.\",\n            \"additionalProperties\": true\n        },\n        \"proof\": {\n            \"type\": \"Ed25519Signature2020\",\n            \"created\": \"2023-07-14T07:15:49.807Z\",\n            \"proofValue\": \"eyJhbGciOiJFUzI1NksifQ.IntcInR5cGVcIjpcImh0dHBzOi8vdzNjLWNjZy5naXRodWIuaW8vdmMtanNvbi1zY2hlbWFzL1wiLFwiaWRcIjpcImRpZDpzY2hlbWE6YjIyZjc4MzUtMDI1NS00MTJiLTg2NjMtZDExMzFjNDhhYTY2XCIsXCJ2ZXJzaW9uXCI6XCIxLjAuMFwiLFwibmFtZVwiOlwiUHJvb2Ygb2YgQWNhZGVtaWMgRXZhbHVhdGlvbiBDcmVkZW50aWFsXCIsXCJhdXRob3JcIjpcImRpZDpyY3c6NmI5ZDdiMzEtYmM3Zi00NTRhLWJlMzAtYjZjNzQ0N2IxY2ZmXCIsXCJhdXRob3JlZFwiOlwiMjAyMi0xMi0xOVQwOToyMjoyMy4wNjRaXCIsXCJzY2hlbWFcIjp7XCIkaWRcIjpcIlByb29mLW9mLUFjYWRlbWljLUV2YWx1YXRpb24tQ3JlZGVudGlhbC0xLjBcIixcIiRzY2hlbWFcIjpcImh0dHBzOi8vanNvbi1zY2hlbWEub3JnL2RyYWZ0LzIwMTktMDkvc2NoZW1hXCIsXCJkZXNjcmlwdGlvblwiOlwiVGhlIGhvbGRlciBoYXMgc2VjdXJlZCB0aGUgPFBFUkNFTlRBR0UvR1JBREU-IGluIDxQUk9HUkFNTUU-IGZyb20gPEFCQ19JbnN0aXR1dGU-LlwiLFwidHlwZVwiOlwib2JqZWN0XCIsXCJwcm9wZXJ0aWVzXCI6e1wiZ3JhZGVcIjp7XCJ0eXBlXCI6XCJzdHJpbmdcIixcImRlc2NyaXB0aW9uXCI6XCJHcmFkZSAoJWFnZSwgR1BBLCBldGMuKSBzZWN1cmVkIGJ5IHRoZSBob2xkZXIuXCJ9LFwicHJvZ3JhbW1lXCI6e1widHlwZVwiOlwic3RyaW5nXCIsXCJkZXNjcmlwdGlvblwiOlwiTmFtZSBvZiB0aGUgcHJvZ3JhbW1lIHB1cnNlZCBieSB0aGUgaG9sZGVyLlwifSxcImNlcnRpZnlpbmdJbnN0aXR1dGVcIjp7XCJ0eXBlXCI6XCJzdHJpbmdcIixcImRlc2NyaXB0aW9uXCI6XCJOYW1lIG9mIHRoZSBpbnN0dXRlIHdoaWNoIGNlcnRpZmllZCB0aGUgc2FpZCBncmFkZSBpbiB0aGUgc2FpZCBza2lsbFwifSxcImV2YWx1YXRpbmdJbnN0aXR1dGVcIjp7XCJ0eXBlXCI6XCJzdHJpbmdcIixcImRlc2NyaXB0aW9uXCI6XCJOYW1lIG9mIHRoZSBpbnN0aXR1dGUgd2hpY2ggcmFuIHRoZSBwcm9ncmFtbWUgYW5kIGV2YWx1YXRlZCB0aGUgaG9sZGVyLlwifX0sXCJyZXF1aXJlZFwiOltcImdyYWRlXCIsXCJwcm9ncmFtbWVcIixcImNlcnRpZnlpbmdJbnN0aXR1dGVcIixcImV2YWx1YXRpbmdJbnN0aXR1dGVcIl0sXCJhZGRpdGlvbmFsUHJvcGVydGllc1wiOnRydWV9fSI.fFQj5dul01kVtz-ezMqZiOLkjAhR7Z7ZzrdOzG6G5nkXbZQKaCzO4ejrvTmSrFzXF8EmK1yjyc6yLkcQqEzrOQ\",\n            \"proofPurpose\": \"assertionMethod\",\n            \"verificationMethod\": \"did:rcw:6b9d7b31-bc7f-454a-be30-b6c7447b1cff\"\n        }\n    },\n    \"tags\": [\n        \"tag1\",\n        \"tag2\"\n    ],\n    \"status\": \"DRAFT\",\n    \"createdAt\": \"2023-07-14T07:15:49.829Z\",\n    \"updatedAt\": \"2023-07-14T07:15:49.829Z\",\n    \"createdBy\": null,\n    \"updatedBy\": null,\n    \"deprecatedId\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "4. Create Insurance Registry",
 					"event": [
 						{
 							"listen": "test",
@@ -1714,7 +1770,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"policyNumber\": \"123456\",\n    \"policyName\": \"Start Insurance Gold Premium\",\n    \"expiresOn\": \"2033-04-20T20:48:17.684Z\",\n    \"fullName\": \"Abhishek Gurg\",\n    \"dob\": \"1968-10-03\",\n    \"benefits\": [\n        \"Critical Surgery\",\n        \"Full body checkup\"\n    ],\n    \"gender\": \"Male\",\n    \"mobile\": \"0123456789\",\n    \"email\": \"abhishek@gmail.com\"\n}",
+							"raw": "{\n    \"policyNumber\": \"123456\",\n    \"policyName\": \"Start Insurance Gold Premium\",\n    \"expiresOn\": \"2033-04-20T20:48:17.684Z\",\n    \"fullName\": \"Abhishek Gangwar\",\n    \"dob\": \"1968-10-04\",\n    \"benefits\": [\n        \"Critical Surgery\",\n        \"Full body checkup\"\n    ],\n    \"gender\": \"Male\",\n    \"mobile\": \"0123456789\",\n    \"email\": \"abhishek@gmail.com\"\n}",
 							"options": {
 								"raw": {
 									"headerFamily": "json",
@@ -1787,7 +1843,7 @@
 					]
 				},
 				{
-					"name": "4. Search Insurance Registry",
+					"name": "5. Search Insurance Registry",
 					"event": [
 						{
 							"listen": "test",
@@ -1896,7 +1952,7 @@
 					]
 				},
 				{
-					"name": "5. ISSUE A CREDENTIAL",
+					"name": "6. ISSUE A CREDENTIAL",
 					"event": [
 						{
 							"listen": "prerequest",
@@ -1963,7 +2019,7 @@
 					"response": []
 				},
 				{
-					"name": "6. VERIFY Credential",
+					"name": "7. VERIFY Credential",
 					"event": [
 						{
 							"listen": "prerequest",
@@ -2009,7 +2065,7 @@
 					"response": []
 				},
 				{
-					"name": "7. Get Credential By ID",
+					"name": "8. Get Credential By ID",
 					"protocolProfileBehavior": {
 						"disabledSystemHeaders": {
 							"accept": true
@@ -2043,7 +2099,7 @@
 					"response": []
 				},
 				{
-					"name": "8. Find credentials by user or subject",
+					"name": "9. Find credentials by user or subject",
 					"event": [
 						{
 							"listen": "test",
@@ -5382,20 +5438,20 @@
 	"variable": [
 		{
 			"key": "REGISTRY_BASE_URL",
-			"value": "http://localhost:80/registry",
+			"value": "http://164.52.205.87:80/registry",
 			"type": "string"
 		},
 		{
 			"key": "IDENTITY_BASE_URL",
-			"value": "http://localhost:80/identity"
+			"value": "http://164.52.205.87:80/identity"
 		},
 		{
 			"key": "CREDSCHEMA_BASE_URL",
-			"value": "http://localhost:80/schema"
+			"value": "http://164.52.205.87:80/schema"
 		},
 		{
 			"key": "CREDENTIAL_BASE_URL",
-			"value": "http://localhost:80/credential"
+			"value": "http://164.52.205.87:80/credential"
 		},
 		{
 			"key": "author_did",
