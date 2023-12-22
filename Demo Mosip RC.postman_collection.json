@@ -1659,7 +1659,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"schema\": {\n        \"type\": \"https://w3c-ccg.github.io/vc-json-schemas/\",\n        \"version\": \"1.0.0\",\n        \"name\": \"Proof of Medical Insurance Credential\",\n        \"author\": \"{{author_did}}\",\n        \"authored\": \"2023-11-19T09:22:23.064Z\",\n        \"schema\": {\n            \"$id\": \"Proof-of-Medical-Insurance-Credential-1.0\",\n            \"$schema\": \"https://json-schema.org/draft/2019-09/schema\",\n            \"description\": \"The holder is holding the certificate of Insurance\",\n            \"type\": \"object\",\n            \"properties\": {\n                \"policyNumber\": {\n                    \"type\": \"string\"\n                },\n                \"policyName\": {\n                    \"type\": \"string\"\n                },\n                \"expiresOn\": {\n                    \"type\": \"string\"\n                },\n                \"benefits\": {\n                    \"type\": \"array\",\n                    \"items\": {\n                        \"type\": \"string\"\n                    }\n                },\n                \"fullName\": {\n                    \"type\": \"string\",\n                    \"title\": \"Full Name\"\n                },\n                \"dob\": {\n                    \"type\": \"string\"\n                },\n                \"gender\": {\n                    \"type\": \"string\",\n                    \"enum\": [\n                        \"Male\",\n                        \"Female\",\n                        \"Other\"\n                    ]\n                }\n            },\n            \"required\": [\n                \"policyNumber\",\n                \"policyName\",\n                \"fullName\",\n                \"dob\"\n            ],\n            \"additionalProperties\": true\n        }\n    },\n    \"tags\": [\n        \"InsuranceCertificate\"\n    ],\n    \"status\": \"DRAFT\"\n}\n"
+							"raw": "{\n    \"schema\": {\n        \"type\": \"https://w3c-ccg.github.io/vc-json-schemas/\",\n        \"version\": \"1.0.0\",\n        \"name\": \"Proof of Medical Insurance Credential\",\n        \"author\": \"{{author_did}}\",\n        \"authored\": \"2023-11-19T09:22:23.064Z\",\n        \"schema\": {\n            \"$id\": \"Proof-of-Medical-Insurance-Credential-1.0\",\n            \"$schema\": \"https://json-schema.org/draft/2019-09/schema\",\n            \"description\": \"The holder is holding the certificate of Insurance\",\n            \"type\": \"object\",\n            \"properties\": {\n                \"policyNumber\": {\n                    \"type\": \"string\"\n                },\n                \"policyName\": {\n                    \"type\": \"string\"\n                },\n                \"expiresOn\": {\n                    \"type\": \"string\"\n                },\n                \"benefits\": {\n                    \"type\": \"array\",\n                    \"items\": {\n                        \"type\": \"string\"\n                    }\n                },\n                \"fullName\": {\n                    \"type\": \"string\",\n                    \"title\": \"Full Name\"\n                },\n                \"dob\": {\n                    \"type\": \"string\"\n                },\n                \"gender\": {\n                    \"type\": \"string\",\n                    \"enum\": [\n                        \"Male\",\n                        \"Female\",\n                        \"Other\"\n                    ]\n                }\n            },\n            \"required\": [\n                \"policyNumber\",\n                \"policyName\",\n                \"fullName\",\n                \"dob\"\n            ],\n            \"_osConfig\": {\n                \"osComment\": [],\n                \"privateFields\": [],\n                \"signedFields\": [],\n                \"indexFields\": [],\n                \"uniqueIndexFields\": [],\n                \"roles\": [\n                    \"anonymous\"\n                ],\n                \"inviteRoles\": [\n                    \"anonymous\"\n                ]\n            },\n            \"additionalProperties\": true\n        }\n    },\n    \"tags\": [\n        \"InsuranceCertificate\"\n    ],\n    \"status\": \"DRAFT\"\n}"
 						},
 						"url": {
 							"raw": "{{CREDSCHEMA_BASE_URL}}/credential-schema",
@@ -1998,7 +1998,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"credential\": {\n        \"@context\": [\n            \"https://www.w3.org/2018/credentials/v1\",\n            \"https://www.w3.org/2018/credentials/examples/v1\"\n        ],\n        \"type\": [\n            \"VerifiableCredential\",\n            \"InsuranceCredential\"\n        ],\n        \"issuer\": \"{{author_did}}\",\n        \"expirationDate\": \"{{insurance_registry_expiresOn}}\",\n        \"credentialSubject\": {\n            \"id\": \"{{author_did}}\"\n        },\n        \"options\": {\n            \"created\": \"2020-04-02T18:48:36Z\",\n            \"credentialStatus\": {\n                \"type\": \"RevocationList2020Status\"\n            }\n        }\n    },\n    \"credentialSchemaId\": \"{{cred_schema_id}}\",\n    \"credentialSchemaVersion\": \"{{cred_schema_version}}\",\n    \"tags\": []\n}",
+							"raw": "{\n    \"credential\": {\n        \"@context\": [\n            \"https://www.w3.org/2018/credentials/v1\",\n            \"https://gist.githubusercontent.com/holashchand/0af8b7eaa956f55c7e389edc1f04fcb8/raw/d3c3e1fb15d57686355bbca84ba307fd8f020bde/vc-context.json\"\n        ],\n        \"type\": [\n            \"VerifiableCredential\",\n            \"InsuranceCredential\"\n        ],\n        \"issuer\": \"{{author_did}}\",\n        \"expirationDate\": \"{{insurance_registry_expiresOn}}\",\n        \"credentialSubject\": {\n            \"id\": \"{{author_did}}\",\n            \"type\": \"Person\"\n        }\n    },\n    \"credentialSchemaId\": \"{{cred_schema_id}}\",\n    \"credentialSchemaVersion\": \"{{cred_schema_version}}\",\n    \"tags\": []\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -5438,20 +5438,20 @@
 	"variable": [
 		{
 			"key": "REGISTRY_BASE_URL",
-			"value": "http://164.52.205.87:80/registry",
+			"value": "http://10.3.148.107:80/registry",
 			"type": "string"
 		},
 		{
 			"key": "IDENTITY_BASE_URL",
-			"value": "http://164.52.205.87:80/identity"
+			"value": "http://10.3.148.107:80/identity"
 		},
 		{
 			"key": "CREDSCHEMA_BASE_URL",
-			"value": "http://164.52.205.87:80/schema"
+			"value": "http://10.3.148.107:80/schema"
 		},
 		{
 			"key": "CREDENTIAL_BASE_URL",
-			"value": "http://164.52.205.87:80/credential"
+			"value": "http://10.3.148.107:80/credential"
 		},
 		{
 			"key": "author_did",
