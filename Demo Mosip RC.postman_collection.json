@@ -1423,17 +1423,17 @@
 							}
 						],
 						"url": {
-							"raw": "{{CREDENTIAL_BASE_URL}}/credentials/did:cbse:da64a0a9-b036-45e6-aad9-b70afe12b56f",
-							"host": [
-								"{{CREDENTIAL_BASE_URL}}"
-							],
-							"path": [
-								"credentials",
-								"did:cbse:da64a0a9-b036-45e6-aad9-b70afe12b56f"
-							]
-						}
-					},
-					"response": [
+																"raw": "{{CREDENTIAL_BASE_URL}}/credentials/did:cbse:da64a0a9-b036-45e6-aad9-b70afe12b56f",
+									"host": [
+										"{{CREDENTIAL_BASE_URL}}"
+									],
+									"path": [
+										"credentials",
+										"did:cbse:da64a0a9-b036-45e6-aad9-b70afe12b56f"
+									]
+								}
+							},
+												"response": [
 						{
 							"name": "Get Credential By ID Copy",
 							"originalRequest": {
@@ -1659,7 +1659,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"schema\": {\n        \"type\": \"https://w3c-ccg.github.io/vc-json-schemas/\",\n        \"version\": \"1.0.0\",\n        \"name\": \"Proof of Medical Insurance Credential\",\n        \"author\": \"{{author_did}}\",\n        \"authored\": \"2023-11-19T09:22:23.064Z\",\n        \"schema\": {\n            \"$id\": \"Proof-of-Medical-Insurance-Credential-1.0\",\n            \"$schema\": \"https://json-schema.org/draft/2019-09/schema\",\n            \"description\": \"The holder is holding the certificate of Insurance\",\n            \"type\": \"object\",\n            \"properties\": {\n                \"policyNumber\": {\n                    \"type\": \"string\"\n                },\n                \"policyName\": {\n                    \"type\": \"string\"\n                },\n                \"expiresOn\": {\n                    \"type\": \"string\"\n                },\n                \"benefits\": {\n                    \"type\": \"array\",\n                    \"items\": {\n                        \"type\": \"string\"\n                    }\n                },\n                \"fullName\": {\n                    \"type\": \"string\",\n                    \"title\": \"Full Name\"\n                },\n                \"dob\": {\n                    \"type\": \"string\"\n                },\n                \"gender\": {\n                    \"type\": \"string\",\n                    \"enum\": [\n                        \"Male\",\n                        \"Female\",\n                        \"Other\"\n                    ]\n                }\n            },\n            \"required\": [\n                \"policyNumber\",\n                \"policyName\",\n                \"fullName\",\n                \"dob\"\n            ],\n            \"_osConfig\": {\n                \"osComment\": [],\n                \"privateFields\": [],\n                \"signedFields\": [],\n                \"indexFields\": [],\n                \"uniqueIndexFields\": [],\n                \"roles\": [\n                    \"anonymous\"\n                ],\n                \"inviteRoles\": [\n                    \"anonymous\"\n                ]\n            },\n            \"additionalProperties\": true\n        }\n    },\n    \"tags\": [\n        \"InsuranceCertificate\"\n    ],\n    \"status\": \"DRAFT\"\n}"
+							"raw": "{\n    \"schema\": {\n        \"type\": \"https://w3c-ccg.github.io/vc-json-schemas/\",\n        \"version\": \"1.0.0\",\n        \"name\": \"Proof of Medical Insurance Credential\",\n        \"author\": \"{{author_did}}\",\n        \"authored\": \"2023-11-19T09:22:23.064Z\",\n        \"schema\": {\n            \"$id\": \"Proof-of-Medical-Insurance-Credential-1.0\",\n            \"$schema\": \"https://json-schema.org/draft/2019-09/schema\",\n            \"description\": \"The holder is holding the certificate of Insurance\",\n            \"type\": \"object\",\n            \"properties\": {\n                \"policyNumber\": {\n                    \"type\": \"string\"\n                },\n                \"policyName\": {\n                    \"type\": \"string\"\n                },\n                \"policyExpiresOn\": {\n                    \"type\": \"string\"\n                },\n                \"policyIssuedOn\": {\n                    \"type\": \"string\"\n                },\n                \"benefits\": {\n                    \"type\": \"array\",\n                    \"items\": {\n                        \"type\": \"string\"\n                    }\n                },\n                \"fullName\": {\n                    \"type\": \"string\",\n                    \"title\": \"Full Name\"\n                },\n                \"dob\": {\n                    \"type\": \"string\"\n                },\n                \"gender\": {\n                    \"type\": \"string\",\n                    \"enum\": [\n                        \"Male\",\n                        \"Female\",\n                        \"Other\"\n                    ]\n                }\n            },\n            \"required\": [\n                \"policyNumber\",\n                \"policyName\",\n                \"policyExpiresOn\",\n                \"policyIssuedOn\",\n                \"fullName\",\n                \"dob\"\n            ],\n            \"additionalProperties\": true\n        }\n    },\n    \"tags\": [\n        \"InsuranceCertificate\"\n    ],\n    \"status\": \"DRAFT\"\n}"
 						},
 						"url": {
 							"raw": "{{CREDSCHEMA_BASE_URL}}/credential-schema",
@@ -1679,13 +1679,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{CREDSCHEMA_BASE_URL}}/credential-schema/{{cred_schema_id}}",
+							"raw": "{{CREDSCHEMA_BASE_URL}}/credential-schema/{{cred_schema_id}}/1.0.0",
 							"host": [
 								"{{CREDSCHEMA_BASE_URL}}"
 							],
 							"path": [
 								"credential-schema",
-								"{{cred_schema_id}}"
+								"{{cred_schema_id}}",
+								"1.0.0"
 							]
 						}
 					},
@@ -1770,7 +1771,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"policyNumber\": \"123456\",\n    \"policyName\": \"Start Insurance Gold Premium\",\n    \"expiresOn\": \"2033-04-20T20:48:17.684Z\",\n    \"fullName\": \"Abhishek Gangwar\",\n    \"dob\": \"1968-10-04\",\n    \"benefits\": [\n        \"Critical Surgery\",\n        \"Full body checkup\"\n    ],\n    \"gender\": \"Male\",\n    \"mobile\": \"0123456789\",\n    \"email\": \"abhishek@gmail.com\"\n}",
+							"raw": "{\n    \"policyNumber\": \"1234567\",\n    \"policyName\": \"Start Insurance Gold Premium\",\n    \"policyExpiresOn\": \"2033-04-20T20:48:17.684Z\",\n    \"policyIssuedOn\": \"2023-04-20T20:48:17.684Z\",\n    \"fullName\": \"Abhishek Gangwar\",\n    \"dob\": \"1968-10-24\",\n    \"benefits\": [\n        \"Critical Surgery\",\n        \"Full body checkup\"\n    ],\n    \"gender\": \"Male\",\n    \"mobile\": \"0123456789\",\n    \"email\": \"abhishek@gmail.com\"\n}",
 							"options": {
 								"raw": {
 									"headerFamily": "json",

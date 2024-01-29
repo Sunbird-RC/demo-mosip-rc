@@ -18,7 +18,8 @@
         "required": [
           "policyNumber",
           "policyName",
-          "expiresOn",
+          "policyExpiresOn",
+          "policyIssuedOn",
           "fullName",
           "dob"
         ],
@@ -29,7 +30,11 @@
           "policyName": {
             "type": "string"
           },
-          "expiresOn": {
+          "policyExpiresOn": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "policyIssuedOn": {
             "type": "string",
             "format": "date-time"
           },
