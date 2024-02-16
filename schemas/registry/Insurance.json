@@ -67,6 +67,10 @@
           "email": {
             "type": "string",
             "title": "Email ID"
+          },
+          "psut": {
+            "type": "string",
+            "title": "PSUT"
           }
         }
       }
